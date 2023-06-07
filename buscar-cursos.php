@@ -1,10 +1,7 @@
+#!/usr/bin/env php
 <?php
 
 require 'vendor/autoload.php';
-
-Teste::Teste();
-exit();
-
 
 use GuzzleHttp\Client;
 use Jordanrdm\BuscadorDeCursos\Buscador;
