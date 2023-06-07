@@ -1,0 +1,42 @@
+{
+    "name": "jordanrdm/buscador-cursos",
+    "description": "Projeto que busca os cursos no site da Alura",
+    "type": "library",
+    "autoload": {
+        "psr-4": {
+            "Jordanrdm\\BuscadorDeCursos\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jordan Douglas",
+            "email": "jordandouglas8515@gmail.com"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.6",
+        "symfony/dom-crawler": "^6.2",
+        "symfony/css-selector": "^6.2"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "phan/phan": "^5.4",
+        "phpunit/phpunit": "^10.2"
+    },
+    "scripts": {
+        "test": "phpunit tests\\TestBuscadorDeCursos.php",
+        "cs": "phpcs --standard=PSR12 src/",
+        "phan": "phan --allow-polyfill-parser",
+        "check": [
+            "@phan",
+            "@cs",
+            "@test"
+        ],
+        "post-update-cmd": [
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "check": "Roda as verificações do código. PHAN, PHPCS e PHPUNIT"
+    }
+}

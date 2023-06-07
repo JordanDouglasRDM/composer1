@@ -2,22 +2,24 @@
 
 require 'vendor/autoload.php';
 
+Teste::Teste();
+exit();
+
+
 use GuzzleHttp\Client;
+use Jordanrdm\BuscadorDeCursos\Buscador;
 use Symfony\Component\DomCrawler\Crawler;
 
 $client = new Client([
-    'verify' => false // Desabilitar a verificação do certificado SSL
+    'verify' => false, // Desabilitar a verificação do certificado SSL
+    'base_uri' => 'https://www.alura.com.br/'
 ]);
-$resposta = $client->request('GET','https://www.alura.com.br/cursos-online-programacao/php');
+$crawler = new Crawler();
 
-$html = $resposta->getBody();
+$buscador = new Buscador($client, $crawler);
+$cursos = $buscador->buscar('/cursos-online-programacao/php');
 
-$crawler  = new Crawler();
-$crawler->addHtmlContent($html);
-
-$cursos = $crawler->filter('span.card-curso__nome');
 
 foreach ($cursos as $curso){
-    echo $curso->textContent . PHP_EOL ;
+    echo $curso . PHP_EOL ;
 }
-
